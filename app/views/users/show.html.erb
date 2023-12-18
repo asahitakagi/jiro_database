@@ -1,0 +1,27 @@
+<h1>プロフィール</h1>
+<p>名前 : <%= @user.name %></p>
+<%= image_tag @user.image_url, size: "250x200" if @user.image? %>
+<p>メールアドレス : <%= @user.email %></p>
+<p>自己紹介 : <%= @user.profile %></p>
+<p>保存した店舗</p>
+
+<% if current_user.id == @user.id %>
+  <%= link_to "プロフィールを編集する", edit_user_registration_path %>
+<% end %>
+
+
+
+
+<h2>ユーザーがいいねした投稿一覧</h2>
+<% @user.liked_posts.each do |t| %>
+  <%= image_tag t.image_url, size: "250x200" if t.image? %>
+
+  <%= t.name %>
+  <br>
+  <%= link_to "店舗詳細", post_path(t.id) %>
+  <br>
+<% end %>
+<br>
+
+<%= link_to "投稿一覧に戻る", posts_path %>
+

@@ -1,0 +1,134 @@
+<%= form_for @post do |f| %>
+    <div class="field">
+    <%= f.label :店名 %>
+    <%= f.text_field :name, :size => 30 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="field">
+    <%= f.label :コールの種類※マシマシの有無も %>
+    <%= f.text_area :call, :size => "30x2" %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :席の種類  %>
+    <%= f.select :taku, 
+    [["カウンターのみ", "カウンターのみ"], 
+    ["カウンター、テーブル", "カウンター、テーブル"], 
+    ["テーブル、座敷のみ", "テーブル、座敷のみ"]], include_blank: "選択して下さい" %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :住所  %>
+    <%= f.text_field :address, :size => 30 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :麺の量※茹で前300gを基準  %>
+    <%= f.select :men, 
+    [["少ない", "少ない"], 
+    ["普通", "普通"], 
+    ["多い", "多い"],
+    ["とても多い","とても多い"]], include_blank: "選択して下さい" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :食券を買うタイミング  %>
+    <%= f.select :taku, 
+    [["並ぶ前", "並ぶ前"], 
+    ["列の途中", "列の途中"], 
+    ["入店後", "入店後"]], include_blank: "選択して下さい" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ラーメンデータベース、食べログのURL %>
+    <%= f.text_field :tabelink, :size => 30 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :公式SNS、HPのURL %>
+    <%= f.text_field :sns, :size => 30 %>
+    <p>Google Map</p>
+    <div class="actions">
+    <%= f.label :lat,"緯度" %>
+    <%= f.text_field :lat,:value =>"緯度", id: :lat %>
+    <%= f.label :lng,"経度" %>
+    <%= f.text_field :lng,:value =>"経度", id: :lng %>
+
+  </div>
+    <input id="address" type="textbox" value="">
+    <input type="button" value="検索" onclick="codeAddress()">
+    <p>マーカーをドラック＆ドロップで位置の調整ができます。<p>
+    <div id='map'></div>
+    
+    <style>
+    #map {
+      height: 600px;
+      width: 600px;
+    }
+    </style>
+    
+    <script>
+    //初期マップの設定
+    let map
+    let marker
+    function initMap(){
+      geocoder = new google.maps.Geocoder()
+    
+      map = new google.maps.Map(document.getElementById('map'), {
+        center:  {lat: 35.6803997, lng:139.7690174},  //東京
+        zoom: 15,
+        
+      });
+    }
+    
+    //検索後のマップ作成
+    let geocoder
+    let aft
+    function codeAddress(){
+      let inputAddress = document.getElementById('address').value;
+      geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+        if (status == 'OK') {
+            //マーカーが複数できないようにする
+            if (aft == true){
+                marker.setMap(null);
+            }
+    
+            //新しくマーカーを作成する
+            map.setCenter(results[0].geometry.location);
+                marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location,
+                draggable: true	// ドラッグ可能にする
+            });
+    
+            //二度目以降か判断
+            aft = true
+    
+            //検索した時に緯度経度を入力する
+            document.getElementById('lat').value = results[0].geometry.location.lat();
+            document.getElementById('lng').value = results[0].geometry.location.lng();
+    
+            // マーカーのドロップ（ドラッグ終了）時のイベント
+            google.maps.event.addListener( marker, 'dragend', function(ev){
+                // イベントの引数evの、プロパティ.latLngが緯度経度
+                document.getElementById('lat').value = ev.latLng.lat();
+                document.getElementById('lng').value = ev.latLng.lng();
+            });
+        } else {
+          alert('該当する結果がありませんでした：' + status);
+        }
+      });   
+    }
+    
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmkttEOHJ1qi9mqKzMs1oC2H_1uT8XmqQ&callback=initMap" async defer></script>
+  </div>
+    <%= f.submit "編集する" %>
+  <% end %>

@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  call: MyText
+  taku: MyString
+  address: MyString
+  men: MyString
+  tiket: MyString
+  rblink: MyString
+  sns: MyString
+  tabelink: MyString
+
+two:
+  name: MyString
+  call: MyText
+  taku: MyString
+  address: MyString
+  men: MyString
+  tiket: MyString
+  rblink: MyString
+  sns: MyString
+  tabelink: MyString

@@ -1,0 +1,91 @@
+<h3>店舗詳細</h3>
+<div class="post">
+  <%= image_tag @post.image_url, size: "250x200" if @post.image? %>
+  <p><%= @post.name %></p>
+  <p><%= @post.address %></p>
+  <p><%= @post.call %></p>
+  <p><%= @post.taku %></p>
+  <p><%= @post.men %></p>
+  <p><%= @post.tiket %></p>
+  <p><%= @post.rblink %></p>
+  <p><%= @post.sns %></p>
+  <p><%= @post.tabelink %></p>
+  <p><%= @post.Body %></p>
+  <p><%= @post.created_at %></p>
+</div>
+
+<div id='map'></div>
+
+<style>
+#map {
+  height: 600px;
+  width: 100%;
+}
+</style>
+
+<!-- js部分 -->
+<script>
+//初期マップの設定
+let map
+let marker
+function initMap(){
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center:  {lat: <%= @post.lat %>, lng: <%= @post.lng %>},
+    zoom: 15,
+  });
+
+   marker = new google.maps.Marker({
+    position:  {lat: <%= @post.lat %>, lng: <%= @post.lng %>},
+    map: map
+  });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmkttEOHJ1qi9mqKzMs1oC2H_1uT8XmqQ&callback=initMap" async defer></script>
+
+
+<% if user_signed_in? %>
+  <% if current_user.already_liked?(@post) %>
+    <%= link_to post_like_path(@post), method: :delete do %>
+      <i class="fa-solid fa-star"></i><%= @post.likes.count %>
+    <% end %>
+  <% else %>
+    <%= link_to post_likes_path(@post), method: :post do %>
+      <i class="fa-solid fa-star"></i><%= @post.likes.count %>
+    <% end %>
+  <% end %>
+<% else %>
+  <i class="fa-solid fa-star"></i><%= @post.likes.count %>
+<% end %>
+
+<h2>いいねしたユーザー</h2>
+<% @post.liked_users.each do |user| %>
+
+  <li><%= user.name %></li>
+<% end %>
+
+<div class="kutikomi-wrapper">
+<div class="posts-container">
+  <p>口コミ一覧</p>
+  <% @kutikomis.each do |c| %>
+    <div>
+      <%= c.user.name unless c.user.blank? %>
+      <%= c.created_at %>
+      <br>
+      <%= c.content %>
+    </div>
+      <br>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= form_with(xml: [@post, @kutikomi], url: post_kutikomis_path(@post),local: true) do |f| %>
+      <%= f.text_area :content %>
+      <%= button_tag type: "submit" do %>
+        <i class="far fa-kutikomis"> 口コミする</i>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+<%= link_to "編集する", edit_post_path(@post.id) %>
+<%= link_to "ホームに戻る", posts_path %>
