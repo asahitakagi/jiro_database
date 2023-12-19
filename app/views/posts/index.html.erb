@@ -1,83 +1,84 @@
 <html>
     <body>
       <div class="box01">
-        <div class="mypage">
-          <% if user_signed_in? %>
-            <%= link_to "マイページ", user_path(current_user.id) %>
-          <% end %>
-        </div>
-        <div class="hitokoto">
-          <p>
-          二郎初心者からジロリアンまで
-          </p>
-        </div>
-        <div class="tebiki">
-          <%= link_to "二郎の手引", jiros_index_path %>
-        </div>
-        <div class="serch"> 
-          <h3>店舗を検索</h3>
-          <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
-            <%= text_field_tag :search %>
-            <%= submit_tag '検索'  %>
-          <% end %>
-        </div>
-
-        <div class='map'>
-        <div id='map'></div>
-
-            <style>
-              #map {
-                height: 350px;
-                width: 250px;
-              }
-            </style>
-
-            <script>
-                function initMap() {
-
-                  let latlng = new google.maps.LatLng(38.60, 139.5);
-                  let styles = [
-                      {
-                        stylers: [
-                        { "saturation": 0 },
-                        { "lightness": 0 }
-                        ]
-                      }
-                      ];
-
-                  let map = new google.maps.Map(document.getElementById('map'), {
-                      zoom: 5.5,
-                      styles: styles,
-                      center: latlng
-                  });
-                  let transitLayer = new google.maps.TransitLayer();
-                  transitLayer.setMap(map);
-
-                  <% @posts.each do |post|%>
-                    (function() {
-                      let markerLatLng = { lat: <%= post.lat %>, lng: <%= post.lng %> }; 
-                      let marker = new google.maps.Marker({ 
-                        position: markerLatLng, 
-                        map: map 
-                      });
-
-                      let infowindow = new google.maps.InfoWindow({
-                        position: markerLatLng,
-                        content: "<a href='<%= post_url(post.id) %>' target='_blank'><%= post.name %></a>"
-                      });
-                      marker.addListener('click', function() {
-                        infowindow.open(map, marker);
-                      });
-
-                    })();
-                  <% end %>
-
-                }
-            </script>
-              <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmkttEOHJ1qi9mqKzMs1oC2H_1uT8XmqQ&callback=initMap" async defer></script>
-            </div>
+        <div class="box02">
+          <div class="mypage">
+            <% if user_signed_in? %>
+              <%= link_to "マイページ", user_path(current_user.id) %>
+            <% end %>
           </div>
-        </div>
+          <div class="hitokoto">
+            <p>
+            二郎初心者からジロリアンまで
+            </p>
+          </div>
+          <div class="tebiki">
+            <%= link_to "二郎の手引", jiros_index_path %>
+          </div>
+          <div class="serch"> 
+            <h3>店舗を検索</h3>
+            <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
+              <%= text_field_tag :search %>
+              <%= submit_tag '検索'  %>
+            <% end %>
+          </div>
+
+          <div class='map'>
+          <div id='map'></div>
+
+              <style>
+                #map {
+                  height: 350px;
+                  width: 250px;
+                }
+              </style>
+
+              <script>
+                  function initMap() {
+
+                    let latlng = new google.maps.LatLng(38.60, 139.5);
+                    let styles = [
+                        {
+                          stylers: [
+                          { "saturation": 0 },
+                          { "lightness": 0 }
+                          ]
+                        }
+                        ];
+
+                    let map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 5.5,
+                        styles: styles,
+                        center: latlng
+                    });
+                    let transitLayer = new google.maps.TransitLayer();
+                    transitLayer.setMap(map);
+
+                    <% @posts.each do |post|%>
+                      (function() {
+                        let markerLatLng = { lat: <%= post.lat %>, lng: <%= post.lng %> }; 
+                        let marker = new google.maps.Marker({ 
+                          position: markerLatLng, 
+                          map: map 
+                        });
+
+                        let infowindow = new google.maps.InfoWindow({
+                          position: markerLatLng,
+                          content: "<a href='<%= post_url(post.id) %>' target='_blank'><%= post.name %></a>"
+                        });
+                        marker.addListener('click', function() {
+                          infowindow.open(map, marker);
+                        });
+
+                      })();
+                    <% end %>
+
+                  }
+              </script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmkttEOHJ1qi9mqKzMs1oC2H_1uT8XmqQ&callback=initMap" async defer></script>
+              </div>
+        </div>  
+      </div>
 
 
         <div class="posts-container">
