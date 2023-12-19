@@ -13,7 +13,7 @@
         </div>
         <div class="tebiki">
           <%= link_to "二郎の手引", jiros_index_path %>
-        </d>
+        </div>
         <div class="serch"> 
           <h3>店舗を検索</h3>
           <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
@@ -23,7 +23,7 @@
         </div>
 
         <div class='map'>
-          <div id='map'>
+        <div id='map'></div>
 
             <style>
               #map {
@@ -103,7 +103,7 @@
         <% else %>
           <i class="fa-solid fa-star"></i><%= t.likes.count %>
         <% end %>
-      </div>
+
       </div>
       
         <%= link_to "店舗詳細", post_path(t.id) %>
