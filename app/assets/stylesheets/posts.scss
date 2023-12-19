@@ -1,15 +1,16 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-.test_box01{
+
+.box01{
     width:100%;
     max-width: 800px;
     height: 400px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-size: cover;
-      animation: img_anime 16s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    animation: img_anime 16s ease infinite;
 }
 
 @keyframes img_anime {
