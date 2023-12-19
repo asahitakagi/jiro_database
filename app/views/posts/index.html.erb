@@ -2,19 +2,20 @@
     <body>
       <div class="box01">
         <div class="box02">
-          <div class="mypage">
-            <% if user_signed_in? %>
-              <%= link_to "マイページ", user_path(current_user.id) %>
-            <% end %>
-          </div>
           <div class="hitokoto">
             <p>
             二郎初心者からジロリアンまで
             </p>
           </div>
+          <div class="mypage">
+            <% if user_signed_in? %>
+              <%= link_to "マイページ", user_path(current_user.id) %>
+            <% end %>
+          </div>
           <div class="tebiki">
             <%= link_to "二郎の手引", jiros_index_path %>
           </div>
+      </div>
           <div class="serch"> 
             <h3>店舗を検索</h3>
             <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
@@ -78,7 +79,6 @@
                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmkttEOHJ1qi9mqKzMs1oC2H_1uT8XmqQ&callback=initMap" async defer></script>
               </div>
         </div>  
-      </div>
 
 
         <div class="posts-container">
