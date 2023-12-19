@@ -5,47 +5,47 @@
 .box01{
     width:100%;
     height: 500px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-size: cover;
-      animation: img_anime 16s ease infinite;
+    display: flex;
+    justify-content:flex-start;
+    flex-wrap: wrap;
+    align-items: center;
+    background-size: cover;
+    animation: img_anime 16s ease infinite;
 }
-
 @keyframes img_anime {
     0% {
     background-image: 
         url("三田本店_ラーメン1.jpg");
-        background-color:rgba(255,255,255,0.2);
+        background-color:rgba(255,255,255,0.562);
     }
     20% {
     background-image:
         url("三田本店_ラーメン1.jpg");
-        background-color:rgba(255,255,255,0.2);
+        background-color:rgba(255,255,255,0.562);
         }
     35% {
     background-image:
         url("三田本店_看板.jpg");
-        background-color:rgba(255,255,255,0.2);
+        background-color:rgba(255,255,255,0.562);
         }
     53% {
     background-image: 
         url("三田本店_看板.jpg");
-        background-color:rgba(255,255,255,0.2);
+        background-color:rgba(255,255,255,0.562);
         }
     68% {
     background-image: 
         url("目黒店_ラーメン1.jpg");
-        background-color:rgba(255,255,255,0.2);
+        background-color:rgba(255,255,255,0.562);
         }
     85% {
     background-image: 
         url("目黒店_ラーメン1.jpg");
-        background-color:rgba(255,255,255,0.2);
+        background-color:rgba(255,255,255,0.562);
         }
     100% {
     background-image: 
         url("三田本店_ラーメン1.jpg");
-        background-color:rgba(255,255,255,0.2);
+        background-color:rgba(255,255,255,0.562);
         }
 } 
