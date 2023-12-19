@@ -29,6 +29,7 @@
     background-color: #fff200;
     height: 80px;
     width: 100%;
+    min-width: 780px;
     font-weight: bold;
     display: flex;
     justify-content: space-between;
