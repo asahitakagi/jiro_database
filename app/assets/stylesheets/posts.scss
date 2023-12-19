@@ -11,10 +11,7 @@
       background-size: cover;
       animation: img_anime 16s ease infinite;
 }
-.test_box01 p{
-  color: #FFF;
-  font-size: 40px;
-}
+
 @keyframes img_anime {
     0% {
     background-image: url("../images/三田本店_ラーメン1");
@@ -37,4 +34,4 @@
     100% {
     background-image: url("../images/三田本店_ラーメン1");
         }
-    } 
+} 
