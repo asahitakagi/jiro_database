@@ -5,7 +5,7 @@
   <%= submit_tag '検索'  %>
 
 <% end %>
-<%= link_to "新規投稿", new_post_path %>
+
 <% if user_signed_in? %>
   <%= link_to "マイページ", user_path(current_user.id) %>
 <% end %>
@@ -109,5 +109,6 @@
     </div>
   <% end %>
   <br>
+    <%= link_to "新しい", new_post_path %>
   <br>
 </div>
