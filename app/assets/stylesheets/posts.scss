@@ -7,6 +7,7 @@
     height: 500px;
     max-height: 500px;
     display: flex;
+    flex-direction: column;
     justify-content:flex-start;
     flex-wrap: wrap;
     align-items: center;
@@ -52,7 +53,9 @@
 
 }
 .hitokoto{
-    font-size: 35px;
+    font-family: 'Monomaniac One', sans-serif;
+    font-size: 30px;
     height: 500px;
-    justify-content:center;
+    width: 50%;
+    min-width: 30px;
 }
