@@ -2,11 +2,6 @@
     <body>
       <div class="box01">
         <div class="box02">
-          <div class="hitokoto">
-            <p>
-            二郎初心者からジロリアンまで
-            </p>
-          </div>
           <div class="mypage">
             <% if user_signed_in? %>
               <%= link_to "マイページ", user_path(current_user.id) %>
