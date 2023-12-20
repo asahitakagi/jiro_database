@@ -49,17 +49,6 @@
     justify-content:flex-start;
     flex-flow: column wrap;
 }
-.hitokoto{
-    float: left;
-    font-family: 'Monomaniac One', sans-serif;
-    font-size: 30px;
-    height: 500px;
-    width: 50%;
-    min-width: 430px;
-    text-align:center;
-    vertical-align: baseline;
-
-}
 .mypage{
     float: left;
 }
@@ -72,4 +61,7 @@
 
 .look{
 
+}
+.body{
+    background-color: #fff200;
 }
