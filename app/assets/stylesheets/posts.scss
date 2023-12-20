@@ -48,12 +48,13 @@
     flex-direction: column;
     justify-content:flex-start;
     flex-flow: column wrap;
+    text-align: center;
 }
 .mypage{
-    float: left;
+    margin:0 auto
 }
 .tebiki{
-    float: left;
+    margin:0 auto
 }
 .map{
     float: right;
